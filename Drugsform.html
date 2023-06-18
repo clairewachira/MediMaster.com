@@ -1,0 +1,41 @@
+<html>  
+    <head>
+        <title> Drug Form </title>
+    </head>
+    <body>
+        <form action="insertdrug.php" method="POST">
+            <table>
+                <tr>
+                    <td>
+                        DrugName:
+                    </td>
+                    <td>
+                        <input type="text" placeholder="Name" Name="drugName" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        DrugFormula:
+                    </td>
+                    <td>
+                        <input type="text" placeholder="Formula" name="drugFormula" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Price:
+                    </td>
+                    <td>
+                        <input type="number" placeholder="Price" name="price" step="0.01" required>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <input type="submit" value="submit">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>

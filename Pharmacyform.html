@@ -1,0 +1,48 @@
+<html>  
+    <head>
+        <title> Pharmacy Form </title>
+    </head>
+    <body>
+        <form action="insertpharmacy.php" method="POST" >
+            <table>
+                <tr>
+                    <td>
+                        Pharmacys's Name:
+                    </td>
+                    <td>
+                        <input type="text" placeholder="Name" name="pharmacyName" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Pharmacys's address:
+                    </td>
+                    <td>
+                        <input type="text" placeholder="Address" name="address"required>
+                    </td>
+                </tr>
+              <tr>
+                    <td>
+                        Phone number:
+                    </td>
+                    <td>
+                        <select name="phoneCode" required> 
+                            <option selected hidden value="phoneCode">Select Code</Code></option>
+                            <option value="254">254</option>
+                            <option value="256">256</option>
+                            <option value="257">257</option>
+                            <option value="258">258</option>
+                        </select>
+                        <input type="text" name="phone" required>
+                    </td>
+                </tr>  
+            
+                <tr>
+                    <td>
+                        <input type="submit" value="submit">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>

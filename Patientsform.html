@@ -1,0 +1,72 @@
+<html>  
+    <head>
+        <title> Patients form </title>
+    </head>
+    <body>
+        <form action="insertPatients.php" method="POST">
+            <table>
+                <tr>
+                    <td>
+                        patientName:
+                    </td>
+                    <td>
+                        <input type="text" placeholder="Name" name="patientName" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        PatientSSN:
+                    </td>
+                    <td>
+                        <input type="number" placeholder="Patientssn" name="SSN" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Date of Birth:
+                    </td>
+                    <td>
+                        <input type="date" placeholder="Patientdob" name="dob" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Gender:
+                    </td>
+                    <td>
+                        <input type="radio" name="Gender" value="m" required> Male
+                        <input type="radio" name="Gender" value="f" required> Female
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        PatientEmail:
+                    </td>
+                    <td>
+                        <input type="Email" placeholder="Email" name="Email" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Phone number:
+                    </td>
+                    <td>
+                        <select name="phoneCode" required> 
+                            <option selected hidden value="phoneCode">Select Code</Code></option>
+                            <option value="254">254</option>
+                            <option value="256">256</option>
+                            <option value="257">257</option>
+                            <option value="258">258</option>
+                        </select>
+                        <input type="phone" name="phone" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" value="submit">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>

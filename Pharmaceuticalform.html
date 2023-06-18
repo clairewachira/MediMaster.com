@@ -1,0 +1,40 @@
+<html>  
+    <head>
+        <title> Pharmaceutical Form </title>
+    </head>
+    <body>
+        <form action="insertpharmaceutical.php" method="POST" >
+            <table>
+                <tr>
+                    <td>
+                        pharmaceutical Name:
+                    </td>
+                    <td>
+                        <input type="text" placeholder="Name" Name="pharmaceuticalName" required>
+                    </td>
+                </tr>
+              <tr>
+                    <td>
+                        Phone number:
+                    </td>
+                    <td>
+                        <select name="phoneCode" required> 
+                            <option selected hidden value="phoneCode">Select Code</Code></option>
+                            <option value="254">254</option>
+                            <option value="256">256</option>
+                            <option value="257">257</option>
+                            <option value="258">258</option>
+                        </select>
+                        <input type="phone" name="phone" required>
+                    </td>
+                </tr>  
+            
+                <tr>
+                    <td>
+                        <input type="submit" value="submit">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>
