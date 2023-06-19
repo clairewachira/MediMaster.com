@@ -1,5 +1,5 @@
 <?php
-require 'config.php';
+require_once 'config.php';
 if(!empty($_SESSION["id"])){
   header("Location: index.php");
 }
@@ -9,6 +9,7 @@ if(isset($_POST["submit"])){
   $email = $_POST["email"];
   $password = $_POST["password"];
   $confirmpassword = $_POST["confirmpassword"];
+  $usertype = $_POST["user_type"];
   $duplicate = mysqli_query($conn, "SELECT * FROM users WHERE username = '$username' OR email = '$email'");
   if(mysqli_num_rows($duplicate) > 0){
     echo
@@ -16,7 +17,7 @@ if(isset($_POST["submit"])){
   }
   else{
     if($password == $confirmpassword){
-      $query = "INSERT INTO users VALUES('','$name','$username','$email','$password')";
+      $query = "INSERT INTO users VALUES('','$name','$username','$email','$password','$usertype')";
       mysqli_query($conn, $query);
       echo
       "<script> alert('Registration Successful'); </script>";
@@ -47,6 +48,12 @@ if(isset($_POST["submit"])){
       <input type="password" name="password" id = "password" required value=""> <br>
       <label for="confirmpassword">Confirm Password : </label>
       <input type="password" name="confirmpassword" id = "confirmpassword" required value=""> <br>
+      <select name="user_type" required> 
+        <option value="Doctor">Doctor</option> 
+        <option value="Patient">Patient</option> 
+        <option value="Pharmacist">Pharmacist</option>
+        <option value="Pharmaceuticalcompany">Pharmaceuticalcompany</option>
+      </select> <br>
       <button type="submit" name="submit">Register</button>
     </form>
     <br>
