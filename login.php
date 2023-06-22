@@ -2,62 +2,72 @@
 session_start();
 // Check if the user is already logged in
 if (isset($_SESSION['username'])) {
-// Redirect to the appropriate user-specific page
-redirectUser($_SESSION['usertype']);
+    // Redirect to the appropriate user-specific page
+    redirectUser($_SESSION['usertype']);
 }
+
 // Check for form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-// Retrieve and sanitize form data
-$username = $_POST['username'];
-$password = $_POST['password'];
-$usertype = $_POST['usertype'];
-// Connect to the database
-$db = new mysqli('localhost', 'root', '', 'drug_dispensing');
-// Check for database connection errors
-if ($db->connect_error) {
-die('Connection failed: ' . $db->connect_error);
+    // Retrieve and sanitize form data
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $usertype = $_POST['usertype'];
+
+    // Connect to the database
+    $db = new mysqli('localhost', 'root', '', 'drug_dispensing');
+
+    // Check for database connection errors
+    if ($db->connect_error) {
+        die('Connection failed: ' . $db->connect_error);
+    }
+    // Prepare and execute the query to fetch user details
+    $query = "SELECT id, username, usertype FROM users WHERE username = ? AND password = ?";
+    $stmt = $db->prepare($query);
+    $stmt->bind_param("ss", $username, $password);
+    $stmt->execute();
+    $stmt->store_result();
+
+    if ($stmt->num_rows === 1) {
+        // Fetch user details from the query result
+        $stmt->bind_result($id, $username, $usertype);
+        $stmt->fetch();
+        // Set session data
+        $_SESSION['id'] = $id;
+        $_SESSION['username'] = $username;
+        $_SESSION['usertype'] = $usertype;
+
+        // Redirect to the appropriate user-specific page
+        redirectUser($usertype);
+    } else {
+        // Invalid login credentials
+        $error = 'Invalid username or password.';
+    }
+
+    // Close the database connection
+    $db->close();
 }
-// Prepare and execute the query to fetch user details
-$query = "SELECT username, usertype FROM users WHERE username = ? AND
-password = ?"; $stmt = $db->prepare($query);
-$stmt->bind_param("ss", $username, $password);
-$stmt->execute();
-$stmt->store_result();
-if ($stmt->num_rows === 1) {
-// Fetch user details from the query result
-$stmt->bind_result($username, $usertype);
-$stmt->fetch();
-// Set session data
-$_SESSION['username'] = $username; $_SESSION['usertype'] = $usertype;
-// Redirect to the appropriate user-specific page
-redirectUser($usertype);
-} else {
-// Invalid login credentials
-$error = 'Invalid username or password.'; }
-// Close the database connection
-$db->close();
-}
-// Function to redirect user based on their usertype
+
 // Function to redirect user based on their usertype
 function redirectUser($usertype) {
-  switch ($usertype) {
-    case 'Doctor':
-      header('Location: doctor.php');
-      exit;
-    case 'Patient':
-      header('Location: patient.php');
-      exit;
-    case 'Pharmacist':
-      header('Location: pharmacist.php');
-      exit;
-    case 'Pharmaceuticalcompany':
-      header('Location: pharmaceuticalcompany.php');
-      exit;
-    default:
-      header('Location: invalid.php');
-      exit;
-  }
+    switch ($usertype) {
+        case 'Doctor':
+            header('Location: doctor.php');
+            exit;
+        case 'Patient':
+            header('Location: patient.php');
+            exit;
+        case 'Pharmacist':
+            header('Location: pharmacist.php');
+            exit;
+        case 'Pharmaceuticalcompany':
+            header('Location: pharmaceuticalcompany.php');
+            exit;
+        default:
+            header('Location: invalid.php');
+            exit;
+    }
 }
+
 ?>
 <!DOCTYPE html> 
 <html> 

@@ -45,6 +45,10 @@ if (isset($_SESSION['username']) && $_SESSION['usertype'] === 'Patient') { $user
         <p class="username">Patient <?php echo $username; ?></p>
         <p class="welcome-message">Welcome, Patient <?php echo $username; ?>!</p>
         <!-- Add your patient-specific content here -->
+        <a href="patientedit.php">Edit Patient Information</a>
+        <br>
+        <a href="patientdelete.php">Delete Patient Information</a>
+        <br>
         <a class="logout-link" href="?logout=true">Logout</a>
     </div>
 </body>

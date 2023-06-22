@@ -17,7 +17,7 @@ if (isset($_GET['logout'])) {
 <!DOCTYPE html> 
 <html> 
 <head>
-    <title>Patient Dashboard</title>
+    <title>Pharmaceuticalcompany Dashboard</title>
     <style>
         body {
             display: flex;
@@ -45,6 +45,10 @@ if (isset($_GET['logout'])) {
         <p class="username">Patient <?php echo $username; ?></p>
         <p class="welcome-message">Welcome, Pharmaceuticalcompany <?php echo $username; ?>!</p>
         <!-- Add your Pharmaceuticalcompany-specific content here -->
+        <a href="pharmaceuticaledit.php">Edit Pharmaceuticalcompany Information</a>
+        <br>
+        <a href="pharmaceuticaldelete.php">Delete Pharmaceuticalcompany Information</a>
+        <br>
         <a class="logout-link" href="?logout=true">Logout</a>
     </div>
 </body>

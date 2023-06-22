@@ -1,0 +1,57 @@
+<?php
+require_once 'config.php';
+// Check if the user is logged in
+if (isset($_SESSION['username']) && $_SESSION['usertype'] === 'Doctor') {
+    // Check if the request is a POST request
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $id = $_POST['id'];
+        $userToDelete = $_POST['user_to_delete'];
+
+        // Check if the user to delete is the logged-in doctor
+        if ($id === $_SESSION['id']) {
+            // Perform the SQL delete query to delete the user's information
+            $query = "DELETE FROM users WHERE id='$id' AND usertype='Doctor'";
+            mysqli_query($conn, $query);
+
+            echo "<script>alert('User information deleted successfully');</script>";
+        } else {
+            echo "<script>alert('Unauthorized access');</script>";
+        }
+    } else {
+        // Retrieve the user's information from the database based on the ID, only if the user is a doctor
+        $id = $_GET['id'];
+        $query = "SELECT * FROM users WHERE id='$id' AND usertype='Doctor'";
+        $result = mysqli_query($conn, $query);
+        $user = mysqli_fetch_assoc($result);
+
+        if ($user) {
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete User Information</title>
+    <!-- Add your stylesheets and scripts here -->
+</head>
+<body>
+    <h2>Delete User Information</h2>
+    <form action="" method="post" autocomplete="off">
+        <input type="hidden" name="id" value="<?php echo $user['id']; ?>">
+        <input type="hidden" name="user_to_delete" value="<?php echo $user['id']; ?>">
+        <p>Are you sure you want to delete the user "<?php echo $user['username']; ?>"?</p>
+        <button type="submit">Delete</button>
+    </form>
+</body>
+</html>
+
+<?php
+        } else {
+            echo "<script>alert('Unauthorized access');</script>";
+        }
+    }
+} else {
+    // Redirect to login page or show an error message
+    header('Location: login.php');
+    exit;
+}
+?>

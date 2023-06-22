@@ -44,6 +44,10 @@ exit; }
         <p class="username">Doctor <?php echo $username; ?></p>
         <p class="welcome-message">Welcome, Doctor <?php echo $username; ?>!</p>
         <!-- Add your doctor-specific content here -->
+        <a href="doctoredit.php">Edit Doctor Information</a>
+        <br>
+        <a href="doctordelete.php">Delete Doctor Information</a>
+        <br>
         <a class="logout-link" href="?logout=true">Logout</a>
     </div>
 </body>

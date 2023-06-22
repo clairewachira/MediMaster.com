@@ -38,6 +38,7 @@ if(isset($_POST["submit"])){
   <body>
     <h2>Registration</h2>
     <form class="" action="" method="post" autocomplete="off">
+      <input type="hidden" name="id" value="<?php echo $id; ?>">
       <label for="name">Name : </label>
       <input type="text" name="name" id = "name" required value=""> <br>
       <label for="username">Username : </label>

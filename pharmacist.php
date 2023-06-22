@@ -45,6 +45,10 @@ if (isset($_GET['logout'])) {
         <p class="username">Pharmacist <?php echo $username; ?></p>
         <p class="welcome-message">Welcome, Pharmacist <?php echo $username; ?>!</p>
         <!-- Add your pharmacist-specific content here -->
+        <a href="pharmacistedit.php">Edit Pharmacist Information</a>
+        <br>
+        <a href="pharmacistdelete.php">Delete Pharmacist Information</a>
+        <br>
         <a class="logout-link" href="?logout=true">Logout</a>
     </div>
 </body>
