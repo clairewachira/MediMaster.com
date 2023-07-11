@@ -16,7 +16,7 @@ exit; }
 <!DOCTYPE html> 
 <html> 
 <head>
-    <title>Doctor Dashboard</title>
+    <title>Doctor's Dashboard</title>
     <style>
         body {
             display: flex;

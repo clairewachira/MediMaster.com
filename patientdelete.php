@@ -1,6 +1,5 @@
 <?php
 require_once 'config.php';
-
 // Check if the user is logged in as a patient
 if (isset($_SESSION['username']) && $_SESSION['usertype'] === 'Patient') {
     // Check if the request is a POST request
