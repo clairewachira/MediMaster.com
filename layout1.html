@@ -1,0 +1,135 @@
+<html>
+        <head>
+            <meta name="viewport" content="with=device=width,initial-scale=1.0"
+            <title>MediMaster</title>
+            <link rel="stylesheet" href="style.css">
+            <link rel="preconnect" href="https://fonts.gststic.com">
+            <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,600;0,700";1,400&display=swap" rel="stylesheet">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css" integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous">
+        </head>
+    <body>
+         <section class="header">
+           <nav>
+            <a href="layout1.html"></a>
+            <div class="nav-links" id="nav-links">
+                <i class="fa fa-times" onclick="hidemenu()"></i>
+                <ul>
+                    <li><b class="active" href="#MEDIMASTER">MEDIMASTER</b></li> 
+                    <li><a class="active" href="#home">Home</a></li> 
+                    <li><a href="#about">About</a></li>
+                    <li><a href="">Blog</a></li> 
+                    <li><a href="login.php">Login</a></li>    
+                    <li><a href="userregistration.php">Sign up</a></li>    
+                    <li><a href="">Services</a></li>
+                    <li><a href="">Contact</a></li>
+                </ul>
+            </div>
+            <i class="fa fa-bars" onclick="showmenu()" ></i>
+           </nav>
+ <div class="text-box">
+    <h1>30% off your first order</h1>
+    <a href="" class="hero-btn">Visit us to know more</a>
+ </div>
+         </section>
+         <!------Services------------->  
+          
+         <section class="Services">
+            <h1>Services we offer</h1>
+            <p>We offer a variety of services of good quality:</p>
+
+            <div class="row">
+               <div class="services-col">
+                 <h3>Medicine dispensing</h3>
+                   <p>MediMaster is a technology based service that enables consumers to
+                     purchase authentic high quality medicines, health and wellness products.Dispensing
+                     of the medicine is fast.Other than medicine, we offer Best deals on medical devices 
+                     Wide range of quality devices,vitamins and supplements.</p>
+               </div>
+               <div class="services-col">
+                <h3>Consultation</h3>
+                  <p>With MediMaster patients are able to request a consult with a doctor of 
+                    their choice at a fare fee.With this a patient will be catered for fully and 
+                    their voice is heard and listenened to.</p>
+                    </div>
+              <div class="services-col">
+                <h3>Prescription</h3>
+                  <p>MediMaster allows doctors to write and give out prescription to their patients
+                     after consultation and it is then dispensed.Patients can also submit their 
+                     own prescription. </p>
+              </div>
+            </div>
+
+         </section>
+
+         <!------------location----------->
+         <section class="location">
+            <h1>Our global location</h1>
+            <p>We are located in Nairobi in three different places:</p>
+            <div class="row">
+                <div class="location-col">
+                    <img src="MediMaster images/location1.png">
+                <div class="layer">
+                    <h3>Garden City Mall</h3>
+                </div>
+                </div>              
+                <div class="location-col">
+                    <img src="MediMaster images/location2.jpg">
+                <div class="layer">
+                    <h3>Galleria Mall</h3>
+                </div>
+                </div>
+                <div class="location-col">
+                    <img src="MediMaster images/location3.jpg">
+                <div class="layer">
+                    <h3>YaYa Centre</h3>
+                </div>
+                </div>
+            </div>
+         </section>
+         <!--------testimonials------------>
+         <section class="testimonials">
+            <h1>What Our patients say:</h1>
+            <p>Some of the reviews from our trustworthy patients</p>
+            <div class="row">
+                <div class="testimonials-col">
+                    <img src="MediMaster images/user1.jpg">
+                  <div>
+                    <p>
+                        I loved the services and my given prescription worked miracles
+                    </p>
+                    <h3>Claire Wanjiru</h3>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                </div>
+                </div>
+                <div class="testimonials-col">
+                    <img src="MediMaster images/user2.jpg">
+                  <div>
+                    <p>
+                        Great service.Delivery was fast.
+                    </p>
+                    <h3>Dorcas Kiptoo</h3>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                  </div>
+                </div>
+            </div>
+            </section>
+         <!------javascript for Toggle menu------->
+         <script>
+            var navLinks=document.getElementById("navLinks")
+            function showmenu(){
+                navLinks.style.right="0";
+            }
+            function hidemenu(){
+                navLinks.style.right="-200px";
+            }
+         </script>
+    </body>
+</html>
