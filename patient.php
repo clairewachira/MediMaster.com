@@ -6,7 +6,8 @@ if (isset($_SESSION['username']) && $_SESSION['usertype'] === 'Patient') { $user
    echo "Success!"; }
     else {
     header('Location: login.php');
-    exit; }
+    exit; 
+       }    
     // Check if logout request is triggered
     if (isset($_GET['logout'])) {
     // Destroy the session and redirect to the login page

@@ -9,7 +9,7 @@ if (isset($_SESSION['username']) && $_SESSION['usertype'] === 'Doctor') {
         $id = $_SESSION['id']; // Get the doctor's ID from the session
 
         // Perform the SQL delete query to delete the doctor's record
-        $query = "DELETE FROM users WHERE id='$id' AND usertype='Doctor'";
+        $query = "DELETE FROM user WHERE id='$id' AND usertype='Doctor'";
         mysqli_query($conn, $query);
 
         // Perform any additional cleanup or related tasks if needed

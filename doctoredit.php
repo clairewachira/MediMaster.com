@@ -12,14 +12,14 @@ if (isset($_SESSION['username']) && $_SESSION['usertype'] === 'Doctor') {
         $password=$_POST['password'];
 
         // Perform the SQL update query to edit the doctor's information
-        $query = "UPDATE users SET name='$name', username='$username', email='$email', password='$password' WHERE id='$id' AND usertype='Doctor'";
+        $query = "UPDATE user SET name='$name', username='$username', email='$email', password='$password' WHERE id='$id' AND usertype='Doctor'";
         mysqli_query($conn, $query);
 
         echo "<script>alert('Doctor information updated successfully');</script>";
     } else {
         // Retrieve the doctor's information from the database based on the ID
         $id = $_SESSION['id']; // Get the doctor's ID from the session
-        $query = "SELECT * FROM users WHERE id='$id' AND usertype='Doctor'";
+        $query = "SELECT * FROM user WHERE id='$id' AND usertype='Doctor'";
         $result = mysqli_query($conn, $query);
         $doctor = mysqli_fetch_assoc($result);
 

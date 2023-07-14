@@ -1,24 +1,31 @@
 <?php
 session_start();
+
 // Check if the user is logged in as a doctor
-if (isset($_SESSION['username']) && $_SESSION['usertype'] === 'Doctor') { $username = $_SESSION['username'];
-echo "Success!"; } else {
-// Redirect to login page or show an error message
-header('Location: login.php');
-exit; }
+if (isset($_SESSION['username']) && $_SESSION['usertype'] === 'Doctor') {
+    $username = $_SESSION['username'];
+    echo "Success!";
+} else {
+    // Redirect to login page or show an error message
+    header('Location: login.php');
+    exit;
+}
+
 // Check if logout request is triggered
 if (isset($_GET['logout'])) {
-// Destroy the session and redirect to the login page
-session_destroy();
-header('Location: login.php');
-exit; }
+    // Destroy the session and redirect to the login page
+    session_destroy();
+    header('Location: login.php');
+    exit;
+}
+
 ?>
 <!DOCTYPE html> 
 <html> 
 <head>
     <title>Doctor's Dashboard</title>
     <style>
-        body {
+        .body {
             display: flex;
             justify-content: flex-end;
             align-items: flex-start;
