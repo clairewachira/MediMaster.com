@@ -55,6 +55,14 @@ if (isset($_GET['logout'])) {
         <br>
         <a href="doctordelete.php">Delete Doctor Information</a>
         <br>
+        <a href="search_patient.php">Search Patient Records</a>
+        <br>
+        <a href="edit_patient.php">Edit Patient Information</a>
+        <br>
+        <a href="delete_patient.php">Delete Patient Information</a>
+        <br>
+        <a href="prescribe.php">Prescribe Drugs</a>
+        <br>
         <a class="logout-link" href="?logout=true">Logout</a>
     </div>
 </body>

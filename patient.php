@@ -42,7 +42,7 @@ if (isset($_SESSION['username']) && $_SESSION['usertype'] === 'Patient') { $user
 </head> 
 <body>
     <div class="container"> 
-        <h1>Doctor Dashboard</h1> 
+        <h1>Patient Dashboard</h1> 
         <p class="username">Patient <?php echo $username; ?></p>
         <p class="welcome-message">Welcome, Patient <?php echo $username; ?>!</p>
         <!-- Add your patient-specific content here -->

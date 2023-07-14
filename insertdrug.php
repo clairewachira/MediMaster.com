@@ -1,15 +1,11 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data
+    $action = $_POST['action'];
+    $drugId = $_POST['drugId'];
     $drugName = $_POST['drugName'];
     $drugFormula = $_POST['drugFormula'];
     $price = $_POST['price'];
-
-    // Validate form data
-    if (empty($drugName) || empty($drugFormula) || empty($price)) {
-        echo "All fields are required";
-        exit;
-    }
 
     // Database connection details
     $servername = "localhost";
@@ -24,15 +20,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     try {
-        // Prepare and execute the SQL INSERT statement
-        $sql = "INSERT INTO drugs (drugName, drugFormula, price) VALUES (:drugName, :drugFormula, :price)";
-        $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':drugName', $drugName);
-        $stmt->bindParam(':drugFormula', $drugFormula);
-        $stmt->bindParam(':price', $price);
-        $stmt->execute();
-
-        echo "New record created successfully";
+        if ($action === 'add') {
+            // Insert a new drug
+            $stmt = $conn->prepare("INSERT INTO drugs (drugName, drugFormula, price) VALUES (:drugName, :drugFormula, :price)");
+            $stmt->bindParam(':drugName', $drugName);
+            $stmt->bindParam(':drugFormula', $drugFormula);
+            $stmt->bindParam(':price', $price);
+            $stmt->execute();
+            echo "Drug added successfully";
+        } elseif ($action === 'update') {
+            // Update the drug
+            $stmt = $conn->prepare("UPDATE drugs SET drugName = :drugName, drugFormula = :drugFormula, price = :price WHERE drugId = :drugId");
+            $stmt->bindParam(':drugName', $drugName);
+            $stmt->bindParam(':drugFormula', $drugFormula);
+            $stmt->bindParam(':price', $price);
+            $stmt->bindParam(':drugId', $drugId);
+            $stmt->execute();
+            echo "Drug updated successfully";
+        } elseif ($action === 'delete') {
+            // Delete the drug
+            $stmt = $conn->prepare("DELETE FROM drugs WHERE drugId = :drugId");
+            $stmt->bindParam(':drugId', $drugId);
+            $stmt->execute();
+            echo "Drug deleted successfully";
+        } else {
+            echo "Invalid action";
+        }
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
     }

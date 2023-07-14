@@ -1,24 +1,24 @@
 <?php
 require_once 'config.php';
 
-// Check if the user is logged in as a pharmaceutical company
+// Check if the user is logged in as a patient
 if (isset($_SESSION['username']) && $_SESSION['usertype'] === 'patient') {
     // Check if the request is a POST request
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $id = $_SESSION['id']; // Get the pharmaceutical company's ID from the session
+        $id = $_SESSION['id']; // Get the patients's ID from the session
         $name = $_POST['name'];
         $username = $_POST['username'];
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        // Perform the SQL update query to edit the pharmaceutical company's information
+        // Perform the SQL update query to edit the patient's information
         $query = "UPDATE users SET name='$name', username='$username', email='$email' password='$password' WHERE id='$id' AND usertype='patient'";
         mysqli_query($conn, $query);
 
         echo "<script>alert('User information updated successfully');</script>";
     } else {
-        // Retrieve the pharmaceutical company's information from the database based on the ID
-        $id = $_SESSION['id']; // Get the pharmaceutical company's ID from the session
+        // Retrieve the patient's information from the database based on the ID
+        $id = $_SESSION['id']; // Get the patient's ID from the session
         $query = "SELECT * FROM users WHERE id='$id' AND usertype='patient'";
         $result = mysqli_query($conn, $query);
         $pharmaceutical = mysqli_fetch_assoc($result);
