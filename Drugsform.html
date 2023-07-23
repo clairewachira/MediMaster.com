@@ -59,24 +59,16 @@
     <div class="container">
         <h1>Drug Form</h1>
         <form action="insertdrug.php" method="POST">
-            <table>
-                <tr>
-                    <td>Drug Name:</td>
-                    <td><input type="text" placeholder="Name" name="drugName" required></td>
-                </tr>
-                <tr>
-                    <td>Drug Formula:</td>
-                    <td><input type="text" placeholder="Formula" name="drugFormula" required></td>
-                </tr>
-                <tr>
-                    <td>Price:</td>
-                    <td><input type="number" placeholder="Price" name="price" step="0.01" required></td>
-                </tr>
-                <tr>
-                    <td colspan="2"><input type="submit" value="Submit"></td>
-                </tr>
-            </table>
-        </form>
+            <!-- other form fields -->
+            <label for="drugName">Drug Name:</label>
+            <input type="text" id="drugName" name="drugName" required>
+            <label for="drugFormula">Drug Formula:</label>
+            <input type="text" id="drugFormula" name="drugFormula" required>
+            <label for="price">Price:</label>
+            <input type="text" id="price" name="price" required>
+            <input type="hidden" name="id" id="id" value="">
+            <button type="submit">Submit</button>
+        </form>        
     </div>
 </body>
 </html>

@@ -52,7 +52,7 @@ if (isset($_SESSION['username']) && $_SESSION['usertype'] === 'Admin') {
             </head>
             <body>
                 <h1>Edit User</h1>
-                <form action="" method="POST">
+                <form action="edit_user.php?id=<?php echo $userId; ?>" method="POST">
                     <label for="username">Username:</label>
                     <input type="text" name="username" id="username" value="<?php echo $user['username']; ?>" required>
                     <label for="usertype">User Type:</label>

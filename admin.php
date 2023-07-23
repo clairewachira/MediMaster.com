@@ -89,8 +89,6 @@ if (isset($_GET['logout'])) {
         <p class="welcome-message">Welcome, Admin <?php echo $username; ?>!</p>
         <div class="admin-options">
             <a href="view_users.php">View Users</a>
-            <a href="edit_users.php">Edit User</a>
-            <a href="delete_users.php">Delete User</a>
         </div>
         <a class="logout-link" href="?logout=true">Logout</a>
     </div>

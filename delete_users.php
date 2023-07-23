@@ -20,9 +20,17 @@ if (isset($_SESSION['username']) && $_SESSION['usertype'] === 'Admin') {
         $stmt->bind_param("i", $userId);
         $stmt->execute();
 
-        // Redirect back to view_users.php
-        header('Location: view_users.php');
-        exit;
+        // Check if the deletion was successful
+        if ($stmt->affected_rows === 1) {
+            // Redirect back to view_users.php
+            header('Location: view_users.php');
+            exit;
+        } else {
+            echo "Failed to delete the user.";
+        }
+
+        // Close the database connection
+        $db->close();
     } else {
         echo "User ID not provided.";
     }

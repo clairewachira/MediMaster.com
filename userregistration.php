@@ -17,7 +17,8 @@ if(isset($_POST["submit"])){
  }
  else{
   if($password == $confirmpassword){
-   $query = "INSERT INTO users VALUES('','$name','$username','$email','$password','$usertype')";
+   $query = "INSERT INTO users (name, username, email, password, usertype) VALUES ('$name', '$username', '$email', '$password', '$usertype')";
+
     mysqli_query($conn, $query);
     echo
       "<script> alert('Registration Successful'); </script>";
@@ -111,6 +112,8 @@ if(isset($_POST["submit"])){
 
     <label for="confirmpassword">Confirm Password:</label>
     <input type="password" name="confirmpassword" id="confirmpassword" required>
+
+    <input type="hidden" name="id" id="id" value="">
 
     <button type="submit" name="submit">Register</button>
   </form>

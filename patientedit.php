@@ -2,70 +2,56 @@
 require_once 'config.php';
 
 // Check if the user is logged in as a patient
-if (isset($_SESSION['username']) && $_SESSION['usertype'] === 'patient') {
+if (isset($_SESSION['username']) && $_SESSION['usertype'] === 'Patient') {
     // Check if the request is a POST request
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $id = $_SESSION['id']; // Get the patients's ID from the session
+        $id = $_SESSION['id']; // Get the doctor's ID from the session
         $name = $_POST['name'];
         $username = $_POST['username'];
         $email = $_POST['email'];
-        $password = $_POST['password'];
+        $password=$_POST['password'];
 
-        // Perform the SQL update query to edit the patient's information
-        $query = "UPDATE users SET name='$name', username='$username', email='$email' password='$password' WHERE id='$id' AND usertype='patient'";
+        // Perform the SQL update query to edit the doctor's information
+        $query = "UPDATE user SET name='$name', username='$username', email='$email', password='$password' WHERE id='$id' AND usertype='Patient'";
         mysqli_query($conn, $query);
 
-        echo "<script>alert('User information updated successfully');</script>";
+        echo "<script>alert('Patient information updated successfully');</script>";
     } else {
-        // Retrieve the patient's information from the database based on the ID
-        $id = $_SESSION['id']; // Get the patient's ID from the session
-        $query = "SELECT * FROM users WHERE id='$id' AND usertype='patient'";
+        // Retrieve the doctor's information from the database based on the ID
+        $id = $_SESSION['id']; // Get the doctor's ID from the session
+        $query = "SELECT * FROM user WHERE id='$id' AND usertype='Patient'";
         $result = mysqli_query($conn, $query);
-        $pharmaceutical = mysqli_fetch_assoc($result);
+        $doctor = mysqli_fetch_assoc($result);
 
-        if ($patient) {
+        if ($doctor) {
 ?>
 
-<!DOCTYPE html> 
-<html> 
+<!DOCTYPE html>
+<html>
 <head>
-    <title>Patient Dashboard</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: flex-end;
-            align-items: flex-start;
-            margin: 0;
-            padding: 20px;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-
-        .container {
-            text-align: right;
-        }
-
-        .welcome-message,
-        .logout-link {
-            margin-top: 10px;
-        }
-    </style>
-</head> 
+    <title>Edit Patient Information</title>
+    <!-- Add your stylesheets and scripts here -->
+</head>
 <body>
-    <div class="container"> 
-        <h1>Patient Dashboard</h1> 
-        <p class="username">Patient <?php echo $username; ?></p>
-        <p class="welcome-message">Welcome, Patient <?php echo $username; ?>!</p>
-        <!-- Add your patient-specific content here -->
-        <a href="patientedit.php">Edit Patient Information</a>
-        <br>
-        <a href="patientdelete.php">Delete Patient Information</a>
-        <br>
-        <a class="logout-link" href="?logout=true">Logout</a>
-    </div>
+    <h2>Edit Patient Information</h2>
+    <form action="" method="post" autocomplete="off">
+        <input type="hidden" name="id" value="<?php echo $doctor['id']; ?>">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" value="<?php echo $doctor['name']; ?>" required><br>
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username" value="<?php echo $doctor['username']; ?>" required><br>
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" value="<?php echo $doctor['email']; ?>" required><br>
+        <label for="password">Password : </label>
+        <input type="password" name="password" id = "password"  value="<?php echo $doctor['password'];?>" required><br>
+        <button type="submit">Update</button>
+    </form>
 </body>
 </html>
+
 <?php
+        } else {
+            echo "<script>alert('Unauthorized access');</script>";
         }
     }
 } else {
@@ -74,5 +60,3 @@ if (isset($_SESSION['username']) && $_SESSION['usertype'] === 'patient') {
     exit;
 }
 ?>
-
-    

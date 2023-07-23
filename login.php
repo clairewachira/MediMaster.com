@@ -66,9 +66,6 @@ function redirectUser($usertype) {
         case 'Pharmacist':
             header('Location: pharmacist.php');
             exit;
-        case 'Pharmaceuticalcompany':
-            header('Location: pharmaceuticalcompany.php');
-            exit;
         case 'Admin':
             header('Location: admin.php');
             exit;
@@ -77,7 +74,7 @@ function redirectUser($usertype) {
 
 // Function to check if the user type is valid
 function isValidUserType($usertype) {
-    $validUserTypes = ['Doctor', 'Patient', 'Pharmacist', 'Pharmaceuticalcompany', 'Admin'];
+    $validUserTypes = ['Doctor', 'Patient', 'Pharmacist',  'Admin'];
     return in_array($usertype, $validUserTypes);
 }
 ?>
@@ -154,7 +151,7 @@ function isValidUserType($usertype) {
             <option value="Doctor">Doctor</option>
             <option value="Patient">Patient</option>
             <option value="Pharmacist">Pharmacist</option>
-            <option value="Pharmaceuticalcompany">Pharmaceutical Company</option>
+
             <option value="Admin">Admin</option>
         </select>
         <button type="submit">Login</button>

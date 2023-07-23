@@ -59,12 +59,18 @@ if (isset($_SESSION['username']) && $_SESSION['usertype'] === 'Admin') {
                 <th>User ID</th>
                 <th>Username</th>
                 <th>User Type</th>
+                <th>Actions</th>
             </tr>
             <?php while ($row = $result->fetch_assoc()): ?>
                 <tr>
                     <td><?php echo $row['id']; ?></td>
                     <td><?php echo $row['username']; ?></td>
                     <td><?php echo $row['usertype']; ?></td>
+                    <td>
+                        <a href="edit_users.php?id=<?php echo $row['id']; ?>">Edit</a>
+                        <!-- Add the Delete link if you have a delete_users.php file -->
+                        <a href="delete_users.php?id=<?php echo $row['id']; ?>">Delete</a>
+                    </td>
                 </tr>
             <?php endwhile; ?>
         </table>
