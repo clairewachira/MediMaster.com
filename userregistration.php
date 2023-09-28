@@ -3,6 +3,8 @@ require 'config.php';
 if(!empty($_SESSION["id"])){
   header("Location: index.php");
 }
+$feedbackMessage = ''; // Initialize the feedback message
+
 if(isset($_POST["submit"])){
  $name = $_POST["name"];
  $username = $_POST["username"];
@@ -12,20 +14,19 @@ if(isset($_POST["submit"])){
  $confirmpassword = $_POST["confirmpassword"];
  $duplicate = mysqli_query($conn, "SELECT * FROM users WHERE username = '$username' OR email = '$email'");
  if(mysqli_num_rows($duplicate) > 0){
-   echo
-  "<script> alert('Username or Email Has Already Taken'); </script>";
- }
+  $feedbackMessage = "";
+}
  else{
   if($password == $confirmpassword){
    $query = "INSERT INTO users (name, username, email, password, usertype) VALUES ('$name', '$username', '$email', '$password', '$usertype')";
 
     mysqli_query($conn, $query);
-    echo
-      "<script> alert('Registration Successful'); </script>";
+    $feedbackMessage = "User Registered Successfully.";
+
      }
       else{
-       echo
-            "<script> alert('Password Does Not Match'); </script>";
+        $feedbackMessage = "Password Does not match";
+
     }
   }
 }
@@ -90,10 +91,33 @@ if(isset($_POST["submit"])){
       margin-top: 10px;
       color: #555;
     }
+    #feedbackMessage {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+        }
   </style>
+   <script>
+    function showFeedback(message) {
+      var feedbackElement = document.getElementById("feedback");
+      feedbackElement.textContent = message;
+      feedbackElement.style.display = "block";
+      setTimeout(function() {
+        feedbackElement.style.display = "none";
+      }, 5000); // Display the message for 5 seconds
+    }
+  </script>
 </head>
 <body>
   <h2>Registration</h2>
+  <div class="feedback" id="feedbackMessage"><?php echo $feedbackMessage; ?></div>
+
   <form action="" method="post" autocomplete="off">
     <label for="name">Name:</label>
     <input type="text" name="name" id="name" required>
@@ -117,7 +141,29 @@ if(isset($_POST["submit"])){
 
     <button type="submit" name="submit">Register</button>
   </form>
+  <div id="feedback" style="display: none;"></div>
   <a href="login.php">Login</a>
+  <script>
+     // JavaScript to display the feedback message
+     function displayFeedback() {
+        const feedbackMessage = "<?php echo $feedbackMessage; ?>";
+        const feedbackDiv = document.getElementById("feedbackMessage");
+
+        if (feedbackMessage) {
+            feedbackDiv.innerHTML = feedbackMessage;
+            feedbackDiv.style.display = "block";
+
+            setTimeout(function () {
+                feedbackDiv.style.display = "none";
+            }, 5000); // Display for 5 seconds, adjust as needed
+        }
+    }
+
+    // Call the displayFeedback function when the page loads
+    window.onload = displayFeedback;
+
+  </script>
+
 </body>
 </html>
 
